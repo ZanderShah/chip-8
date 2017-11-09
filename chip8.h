@@ -1,5 +1,13 @@
-#ifndef CPU_H
-#define CPU_H
+#ifndef CHIP_H
+#define CHIP_H
+
+#include <cstdio>
+#include <cstring>
+#include <fstream>
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
 
 typedef struct {
     unsigned short opcode;
@@ -14,13 +22,18 @@ typedef struct {
 
     unsigned char gfx[64][32];
 
-	unsigned char delay_timer;
-	unsigned char sound_timer;
+	unsigned char delay;
+	unsigned char sound;
 
 	unsigned short stack[16];
 	unsigned short sp;
 
-	unsigned char key[16];
+    unsigned char key[16];
+    
+    void initialize();
+    void load(const char* path);
+    void cycle();
+    void setKeys();
 } chip8;
 
 #endif
